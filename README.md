@@ -10,6 +10,8 @@ Portfólio pessoal de **Juan Rodrigues**, Analista de Sistemas com base em requi
 
 Feito em React e CSS puro, sem biblioteca de componentes nem de animação: todos os efeitos foram escritos à mão.
 
+🌐 **Acesse em produção:** [juanportfolio-phi.vercel.app](https://juanportfolio-phi.vercel.app/)
+
 ---
 
 ## 🚀 Destaques Técnicos
