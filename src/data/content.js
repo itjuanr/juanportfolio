@@ -380,7 +380,7 @@ export const projects = [
     },
     tags: ['HTML', 'CSS'],
     repo: 'https://github.com/itjuanr/rio-balsamor-landing-page',
-    demo: 'https://balsamor.vercel.app',
+    demo: 'https://riobalsamor.vercel.app/',
   },
 ]
 
