@@ -35,6 +35,14 @@ export function MenuIcon() {
   )
 }
 
+export function CloseIcon() {
+  return (
+    <svg {...base}>
+      <path d="M6 6l12 12M18 6 6 18" />
+    </svg>
+  )
+}
+
 export function ArrowIcon() {
   return (
     <svg {...base} width={16} height={16}>

@@ -404,6 +404,8 @@ export const translations = {
       experience: 'Experiência',
       education: 'Formação',
       courses: 'Cursos',
+      showDetails: 'Ver detalhes',
+      hideDetails: 'Ocultar detalhes',
     },
     projects: {
       title: 'Projetos',
@@ -441,6 +443,8 @@ export const translations = {
       experience: 'Experience',
       education: 'Education',
       courses: 'Courses',
+      showDetails: 'Show details',
+      hideDetails: 'Hide details',
     },
     projects: { title: 'Projects', code: 'Code', demo: 'Live demo' },
     skills: { title: 'Skills' },

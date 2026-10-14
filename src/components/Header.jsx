@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { usePreferences } from '../context/Preferences'
 import { profile } from '../data/content'
-import { MenuIcon, MoonIcon, SunIcon } from './Icons'
+import { CloseIcon, MenuIcon, MoonIcon, SunIcon } from './Icons'
 
 const SECTIONS = ['about', 'journey', 'projects', 'skills', 'contact']
 const LANGUAGES = ['pt', 'en']
@@ -43,6 +43,20 @@ export default function Header() {
   const { theme, toggleTheme, lang, setLang, t } = usePreferences()
   const [menuOpen, setMenuOpen] = useState(false)
   const active = useActiveSection()
+
+  // Com o menu do celular aberto (tela cheia), a página de trás não rola e Esc fecha o menu.
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (event) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [menuOpen])
 
   // Atalhos de contato, visíveis só quando o menu vira coluna lateral (telas largas).
   const links = [
@@ -133,7 +147,7 @@ export default function Header() {
             aria-expanded={menuOpen}
             aria-controls="nav"
           >
-            <MenuIcon />
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
         </div>
       </div>

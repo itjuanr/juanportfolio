@@ -1221,3 +1221,139 @@ button {
     animation-delay: calc(var(--i) * 420ms + 800ms);
   }
 }
+
+/* ---------- Celular e tablet ---------- */
+/* O botão "Ver detalhes" da trajetória só existe em telas pequenas. */
+.journey__toggle {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  /* Menu em tela cheia, com links grandes e fáceis de tocar. */
+  .nav {
+    position: fixed;
+    top: var(--header-height);
+    bottom: 0;
+    justify-content: center;
+    padding: 0 var(--pad) 4rem;
+    border-bottom: 0;
+  }
+
+  .nav a {
+    padding: 0.8rem 0;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .nav a.is-active {
+    color: var(--blue-text);
+  }
+
+  /* Áreas de toque maiores no cabeçalho. */
+  .lang-switch button {
+    padding: 10px 8px;
+  }
+
+  .icon-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Topo */
+  .hero {
+    padding: calc(var(--header-height) + 2.5rem) 0 4rem;
+  }
+
+  .hero__headline {
+    font-size: clamp(2.9rem, 14vw, 5.5rem);
+  }
+
+  .terminal {
+    max-width: none;
+  }
+
+  /* Trajetória: os tópicos começam recolhidos atrás do botão. */
+  .journey__row {
+    padding: 1.75rem 0;
+  }
+
+  .journey__highlights {
+    display: none;
+  }
+
+  .journey__row.is-open .journey__highlights {
+    display: grid;
+  }
+
+  .journey__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    padding: 0.55rem 1.1rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .journey__toggle::after {
+    content: '+';
+    color: var(--blue-text);
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .journey__row.is-open .journey__toggle::after {
+    content: '−';
+  }
+
+  .project {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Botões do topo empilhados e com a mesma largura. */
+  .hero__actions {
+    display: grid;
+  }
+
+  .button {
+    justify-content: center;
+  }
+
+  .terminal {
+    font-size: 0.8rem;
+  }
+
+  .terminal__rows div {
+    grid-template-columns: 4.6rem minmax(0, 1fr);
+  }
+
+  /* Habilidades viram etiquetas lado a lado, em vez de uma lista comprida. */
+  .skills__group {
+    padding: 1.4rem;
+  }
+
+  .skills__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skills__list li,
+  .skills__list li:hover {
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+  }
+
+  .contact__email {
+    font-size: clamp(1.15rem, 6.4vw, 2rem);
+  }
+}
