@@ -1,0 +1,1223 @@
+/* ---------- Tema: preto e branco puro ---------- */
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f5;
+  --surface-2: #ebebeb;
+  --text: #000000;
+  --text-2: rgb(0 0 0 / 0.7);
+  --muted: #666666;
+  --border: rgb(0 0 0 / 0.14);
+  --border-strong: rgb(0 0 0 / 0.3);
+  --accent: #000000;
+  --accent-contrast: #ffffff;
+  /* Azul elétrico: --blue para preenchimentos (texto branco por cima), --blue-text para texto. */
+  --blue: #2b4dff;
+  --blue-text: #1f3de0;
+  --on-blue: #ffffff;
+
+  /* Títulos em Bricolage Grotesque (com personalidade), texto em Geist (neutra e legível). */
+  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --font: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --header-height: 64px;
+  --radius: 20px;
+  --radius-pill: 999px;
+  --pad: clamp(1.25rem, 6vw, 4rem);
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: #000000;
+  --surface: #0d0d0d;
+  --surface-2: #181818;
+  --text: #ffffff;
+  --text-2: rgb(255 255 255 / 0.7);
+  --muted: #8f8f8f;
+  --border: rgb(255 255 255 / 0.14);
+  --border-strong: rgb(255 255 255 / 0.3);
+  --accent: #ffffff;
+  --accent-contrast: #000000;
+  --blue-text: #8198ff;
+
+  color-scheme: dark;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.header__brand,
+.hero__headline,
+.section__title,
+.about__heading,
+.journey__title,
+.project__title,
+.contact__email {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--blue);
+  color: var(--on-blue);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Texto de apoio discreto: datas, categorias, observações. */
+.label {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 12px;
+  z-index: 60;
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 500;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ---------- Cabeçalho ---------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: var(--header-height);
+  padding: 0 var(--pad);
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.header__brand {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.dot,
+.header__brand span {
+  color: var(--blue-text);
+}
+
+.nav {
+  display: flex;
+  gap: clamp(1.25rem, 2.6vw, 2.5rem);
+  margin-left: auto;
+}
+
+.nav a {
+  position: relative;
+  padding: 6px 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+.nav a:hover,
+.nav a.is-active {
+  color: var(--text);
+}
+
+/* Sublinhado que cresce da esquerda para a direita. */
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent);
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale 0.3s ease;
+}
+
+.nav a:hover::after,
+.nav a.is-active::after {
+  scale: 1 1;
+}
+
+.header__end {
+  display: flex;
+  align-items: center;
+}
+
+.header__links {
+  display: none;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+}
+
+.lang-switch button {
+  padding: 6px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: color 0.2s ease;
+}
+
+.lang-switch button + button::before {
+  content: '/';
+  margin-right: 12px;
+  color: var(--border-strong);
+}
+
+.lang-switch button:hover,
+.lang-switch button.is-active {
+  color: var(--text);
+}
+
+.icon-button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  transition: background-color 0.2s ease, color 0.2s ease, translate 0.2s ease-out;
+}
+
+.icon-button:hover {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.menu-button {
+  display: none;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: min(100vh, 1000px);
+  min-height: min(100svh, 1000px);
+  padding: calc(var(--header-height) + 3rem) 0 6rem;
+  overflow: hidden;
+  --mx: 70%;
+  --my: 40%;
+}
+
+/* Grade de pontos que só aparece em volta do mouse. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--blue-text) 1px, transparent 1.4px);
+  background-size: 26px 26px;
+  opacity: 0.6;
+  mask-image: radial-gradient(380px circle at var(--mx) var(--my), #000, transparent);
+  -webkit-mask-image: radial-gradient(380px circle at var(--mx) var(--my), #000, transparent);
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 var(--pad);
+}
+
+.hero__name {
+  color: var(--text-2);
+  font-size: 1.05rem;
+  font-weight: 400;
+}
+
+/* Três verbos grandes, um por linha. Os dois primeiros ficam apagados e o último em destaque. */
+.hero__headline {
+  margin: 1.5rem 0 2rem;
+  font-size: clamp(3rem, 10vw, 8.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.hero__line {
+  display: block;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.hero__line:last-child,
+.hero__line:hover {
+  color: var(--text);
+}
+
+.hero__intro {
+  max-width: 62ch;
+  color: var(--text-2);
+  font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.75rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.7rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+    translate 0.2s ease-out;
+}
+
+.button:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.button--primary {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: var(--on-blue);
+}
+
+.button--primary:hover {
+  border-color: var(--blue);
+  background: transparent;
+  color: var(--text);
+}
+
+/* ---------- Seções ---------- */
+.section {
+  padding: clamp(4.5rem, 9vw, 7rem) var(--pad);
+  border-top: 1px solid var(--border);
+}
+
+.section__header {
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.section__title {
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+/* ---------- Sobre ---------- */
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.about__heading {
+  font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.about__heading span {
+  display: block;
+  color: var(--muted);
+}
+
+.about__heading span:first-child {
+  color: var(--text);
+}
+
+.about__photo {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin-top: 2.5rem;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius);
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.facts {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.facts dd {
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
+.about__text {
+  display: grid;
+  gap: 1.4rem;
+  color: var(--text-2);
+  font-size: 1.08rem;
+}
+
+/* ---------- Trajetória ---------- */
+.journey__group {
+  margin-bottom: 0.5rem;
+}
+
+.journey + .journey__group {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+}
+
+.journey__row {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.journey--compact .journey__row {
+  grid-template-columns: 190px minmax(0, 1fr);
+  align-items: baseline;
+  padding: 1.4rem 0;
+}
+
+.journey__title {
+  margin-top: 0.6rem;
+  font-size: clamp(1.2rem, 2.1vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.journey--compact .journey__title {
+  margin-top: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.journey__place {
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.journey__summary {
+  color: var(--text);
+  font-size: 1.08rem;
+  font-weight: 400;
+}
+
+.journey__highlights {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+  color: var(--text-2);
+}
+
+.journey__highlights li {
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.journey__highlights strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.journey__highlights li::before {
+  content: '';
+  position: absolute;
+  top: 0.8em;
+  left: 0;
+  width: 0.7rem;
+  height: 1px;
+  background: var(--muted);
+}
+
+/* ---------- Grade "colada" das habilidades (1px entre os blocos) ---------- */
+.grid {
+  display: grid;
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--border);
+}
+
+.grid--skills {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* ---------- Projetos ---------- */
+/* Lista de blocos arredondados. Ao passar o mouse, o bloco inteiro fica azul. */
+.projects {
+  --bleed: min(1.75rem, var(--pad));
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 calc(var(--bleed) * -1);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  padding: clamp(1.5rem, 2.6vw, 2.25rem) var(--bleed);
+  border-radius: var(--radius);
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+.project:hover {
+  --text: var(--on-blue);
+  --text-2: color-mix(in srgb, var(--on-blue) 90%, transparent);
+  --muted: color-mix(in srgb, var(--on-blue) 82%, transparent);
+  --border-strong: color-mix(in srgb, var(--on-blue) 45%, transparent);
+  --accent: var(--on-blue);
+  background: var(--blue);
+  color: var(--on-blue);
+}
+
+.project__title {
+  font-size: clamp(1.7rem, 3.8vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.project:hover .project__title {
+  translate: 0.6rem 0;
+}
+
+.project__title + .label {
+  margin-top: 0.6rem;
+  transition: color 0.35s ease;
+}
+
+.project__description {
+  max-width: 68ch;
+  color: var(--text-2);
+  font-size: 1.05rem;
+  transition: color 0.35s ease;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.25rem;
+}
+
+.tags li {
+  padding: 0.2rem 0.8rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 400;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+
+.project__links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  gap: 0.4rem;
+  padding-bottom: 2px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent);
+  scale: 0.25 1;
+  transform-origin: left;
+  transition: scale 0.3s ease;
+}
+
+.link:hover::after {
+  scale: 1 1;
+}
+
+.link span {
+  transition: translate 0.25s ease;
+}
+
+.link:hover span {
+  translate: 2px -2px;
+}
+
+/* ---------- Habilidades ---------- */
+.skills__group {
+  padding: clamp(1.5rem, 2.4vw, 2.2rem);
+  background: var(--bg);
+}
+
+.skills__list {
+  display: grid;
+  margin-top: 1.25rem;
+}
+
+.skills__list li {
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--border);
+  font-weight: 400;
+  transition: padding-left 0.25s ease, color 0.25s ease;
+}
+
+.skills__list li:hover {
+  padding-left: 0.6rem;
+}
+
+/* ---------- Contato ---------- */
+.contact__text {
+  max-width: 48ch;
+  color: var(--text-2);
+  font-size: 1.1rem;
+}
+
+.contact__email {
+  position: relative;
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding-bottom: 0.2em;
+  font-size: clamp(1.15rem, 5vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.contact__email::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--blue);
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.contact__email:hover::after {
+  scale: 1 1;
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+/* ---------- Rodapé ---------- */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding: 1.75rem var(--pad);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+/* ---------- Efeitos ---------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  height: 2px;
+  background: var(--blue);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left;
+}
+
+/* Cursor customizado (ligado pelo Cursor.jsx só em dispositivos com mouse).
+   O modo "difference" inverte as cores do que está embaixo, então ele aparece em qualquer fundo. */
+.cursor {
+  display: none;
+}
+
+.custom-cursor,
+.custom-cursor * {
+  cursor: none !important;
+}
+
+.custom-cursor .cursor {
+  display: block;
+}
+
+.custom-cursor--hidden .cursor {
+  opacity: 0;
+}
+
+.cursor__dot,
+.cursor__ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  will-change: translate;
+}
+
+.cursor__dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: #fff;
+}
+
+.cursor__ring {
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border: 1px solid #fff;
+  transition: scale 0.3s ease, background-color 0.3s ease;
+}
+
+.cursor__ring.is-hover {
+  scale: 1.8;
+  background: #fff;
+}
+
+/* O clique dá só um leve aperto, partindo do tamanho em que o anel já está. */
+.cursor__ring.is-down {
+  scale: 0.85;
+}
+
+.cursor__ring.is-hover.is-down {
+  scale: 1.55;
+}
+
+/* Troca de tema: o tema novo se abre em círculo a partir do botão. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: theme-reveal 0.6s ease-out;
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0));
+  }
+  to {
+    clip-path: circle(150vmax at var(--vt-x, 50%) var(--vt-y, 0));
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 22px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Entrada do topo da página, um elemento depois do outro. */
+  .hero__inner > * {
+    animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero__inner > :nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .hero__inner > :nth-child(3) {
+    animation-delay: 0.2s;
+  }
+
+  .hero__inner > :nth-child(4) {
+    animation-delay: 0.3s;
+  }
+
+  /* Elementos com data-reveal aparecem quando entram na tela (useInteractions.js). */
+  [data-reveal] {
+    opacity: 0;
+    translate: 0 14px;
+    transition: opacity 0.6s ease, translate 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+
+  [data-reveal][data-revealed] {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* ---------- Telas largas: o menu vira uma coluna fixa na lateral ---------- */
+@media (min-width: 1101px) {
+  :root {
+    --rail: 250px;
+  }
+
+  html {
+    scroll-padding-top: 0;
+  }
+
+  .header {
+    right: auto;
+    bottom: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    width: var(--rail);
+    height: auto;
+    padding: 2.5rem 2rem 2rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 0;
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .header__brand {
+    font-size: 1.7rem;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 0.2rem;
+    margin: 0;
+  }
+
+  .nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.4rem 0;
+  }
+
+  /* O traço antes do link cresce na seção que está na tela. */
+  .nav a::before {
+    content: '';
+    width: 1.25rem;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .nav a::after {
+    display: none;
+  }
+
+  .nav a:hover::before,
+  .nav a.is-active::before {
+    width: 2.75rem;
+  }
+
+  .header__end {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .header__links {
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.95rem;
+  }
+
+  .header__links a {
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  .header__links a:hover {
+    color: var(--text);
+  }
+
+  main,
+  .footer {
+    margin-left: var(--rail);
+  }
+
+  .hero {
+    padding-top: 5rem;
+  }
+
+  .hero__headline {
+    font-size: clamp(3.5rem, 8.6vw, 8.5rem);
+  }
+
+  /* A barra de progresso corre na vertical, sobre a borda do menu. */
+  .scroll-progress {
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: calc(var(--rail) - 1px);
+    width: 2px;
+    height: auto;
+    transform: scaleY(var(--progress, 0));
+    transform-origin: top;
+  }
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1100px) {
+  .grid--skills {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .menu-button {
+    display: grid;
+  }
+
+  .nav {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0.5rem var(--pad) 1.25rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .nav--open {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav a::after {
+    display: none;
+  }
+
+  .about,
+  .project,
+  .journey__row,
+  .journey--compact .journey__row {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .journey--compact .journey__row {
+    gap: 0.4rem;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .grid--skills {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------- Cor de destaque no menu ---------- */
+.nav a.is-active::before,
+.nav a.is-active::after {
+  background: var(--blue);
+}
+
+/* ---------- Terminal do topo ---------- */
+.terminal {
+  max-width: 440px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.8rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.terminal__bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+
+.terminal__bar span:last-of-type {
+  margin-right: 0.5rem;
+}
+
+.terminal__body {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.1rem 1.2rem 1.3rem;
+}
+
+/* Linha de comando: o "$" azul é o prompt. */
+.terminal__cmd {
+  display: flex;
+  align-items: center;
+  color: var(--text);
+}
+
+.terminal__cmd::before {
+  content: '$';
+  margin-right: 0.7rem;
+  color: var(--blue-text);
+}
+
+.terminal__out {
+  color: var(--text-2);
+}
+
+.terminal__out + .terminal__cmd,
+.terminal__rows + .terminal__cmd {
+  margin-top: 0.7rem;
+}
+
+.terminal__rows {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.terminal__rows div {
+  display: grid;
+  grid-template-columns: 5.2rem minmax(0, 1fr);
+  gap: 0.6rem;
+}
+
+.terminal__rows dt {
+  color: var(--muted);
+  text-transform: lowercase;
+}
+
+.terminal__rows dd {
+  color: var(--text-2);
+}
+
+/* Cursor de terminal piscando. */
+.terminal__cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  background: var(--blue);
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Caminho em estilo de terminal acima do título de cada seção. */
+.section__path {
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.section__path::before {
+  content: '~/';
+  color: var(--blue-text);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.footer::before {
+  content: '$';
+  margin-right: 0.7rem;
+  color: var(--blue-text);
+}
+
+.footer .terminal__cursor {
+  margin-left: 0.5rem;
+}
+
+/* ---------- Faixa em movimento ---------- */
+.marquee {
+  overflow: hidden;
+  padding: 1.1rem 0;
+  background: var(--blue);
+  color: var(--on-blue);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+
+.marquee__group {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.marquee__group span {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.marquee__group span::after {
+  content: '';
+  width: 0.35em;
+  height: 0.35em;
+  margin: 0 clamp(1.5rem, 3vw, 2.75rem);
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 1300px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .terminal__body > * {
+    animation: rise 0.45s ease both;
+    animation-delay: calc(var(--i) * 420ms + 800ms);
+  }
+}
