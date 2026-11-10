@@ -40,13 +40,14 @@ export const profile = {
           en: "Bachelor's in Software Engineering, UNINTER",
         },
       },
-      {
-        label: { pt: 'Projeto', en: 'Project' },
-        value: {
-          pt: "Ocean's Store, em produção e em evolução",
-          en: "Ocean's Store, in production and evolving",
-        },
-      },
+      // Ocean's Store fora do site por enquanto. Para voltar, é só descomentar.
+      // {
+      //   label: { pt: 'Projeto', en: 'Project' },
+      //   value: {
+      //     pt: "Ocean's Store, em produção e em evolução",
+      //     en: "Ocean's Store, in production and evolving",
+      //   },
+      // },
     ],
   },
   // Faixa em movimento logo abaixo do topo.
@@ -62,12 +63,16 @@ export const profile = {
     pt: [
       'Trabalho no ponto de encontro entre quem usa o software e quem o constrói. Hoje, na Deloitte, conduzo as evolutivas de um sistema MES de grande porte: o sistema que acompanha e controla a produção em tempo real, neste caso em operações de mineração. Ouço a necessidade de quem está na operação, transformo isso em especificação, acompanho o desenvolvimento, testo e levo a entrega até a produção.',
       'Cheguei aqui pelo caminho dos testes. Em 2022 fiz uma academia intensiva de teste de software na Universidade Franciscana e fui contratado pela Atos como analista de testes. Passei mais de dois anos procurando falhas nesse sistema, e para isso precisei entender cada fluxo e cada regra de negócio. Foi esse conhecimento que, em outubro de 2024, me rendeu uma promoção: passei a especificar os requisitos, além de garantir a qualidade.',
-      "Programar é o passo seguinte, e é a parte de que mais gosto. Desenvolvo com JavaScript, TypeScript, React e Node, concluí uma pós-graduação em desenvolvimento Java e curso bacharelado em Engenharia de Software. Meu maior projeto, a Ocean's Store, é uma plataforma de vendas com pagamentos reais que está em produção.",
+      // Versão com a Ocean's Store (fora do site por enquanto):
+      // "Programar é o passo seguinte, e é a parte de que mais gosto. Desenvolvo com JavaScript, TypeScript, React e Node, concluí uma pós-graduação em desenvolvimento Java e curso bacharelado em Engenharia de Software. Meu maior projeto, a Ocean's Store, é uma plataforma de vendas com pagamentos reais que está em produção.",
+      'Programar é o passo seguinte, e é a parte de que mais gosto. Desenvolvo com JavaScript, TypeScript, React e Node, concluí uma pós-graduação em desenvolvimento Java e curso bacharelado em Engenharia de Software. Coloco tudo isso em prática em projetos próprios, como os que estão mais abaixo.',
     ],
     en: [
       'I work where the people who use software meet the people who build it. Today, at Deloitte, I lead the enhancements of a large MES: the system that tracks and controls production in real time, in this case for mining operations. I listen to what operations need, turn it into a specification, follow development, test, and take the delivery all the way to production.',
       'I got here through testing. In 2022 I completed an intensive software testing academy at Universidade Franciscana and was hired by Atos as a test analyst. I spent more than two years hunting for failures in that system, which meant understanding every flow and every business rule. That knowledge is what earned me a promotion in October 2024: I began specifying requirements in addition to assuring quality.',
-      "Coding is the next step, and the part I enjoy most. I build with JavaScript, TypeScript, React and Node, completed a postgraduate degree in Java development, and am pursuing a bachelor's degree in Software Engineering. My largest project, Ocean's Store, is a sales platform with real payments running in production.",
+      // Version with Ocean's Store (off the site for now):
+      // "Coding is the next step, and the part I enjoy most. I build with JavaScript, TypeScript, React and Node, completed a postgraduate degree in Java development, and am pursuing a bachelor's degree in Software Engineering. My largest project, Ocean's Store, is a sales platform with real payments running in production.",
+      "Coding is the next step, and the part I enjoy most. I build with JavaScript, TypeScript, React and Node, completed a postgraduate degree in Java development, and am pursuing a bachelor's degree in Software Engineering. I put all of it into practice in my own projects, like the ones further down.",
     ],
   },
   facts: [
@@ -321,6 +326,8 @@ export const skills = [
 ]
 
 export const projects = [
+  // Ocean's Store fora do site por enquanto. Para voltar, é só remover o /* e o */ abaixo.
+  /*
   {
     title: "Ocean's Store",
     description: {
@@ -332,6 +339,7 @@ export const projects = [
     repo: null,
     demo: 'https://www.oceansstore.site/',
   },
+  */
   {
     title: 'FlashMind',
     description: {
